@@ -9,23 +9,22 @@ class Show extends React.Component {
 
   componentWillMount() {
     axios({
-      url: 'https://restcountries.eu/rest/v2/all',
+      url: 'https://api.unsplash.com/photos/random?count=20?client_id=3303fbd52fa053ed62beecf82a93c6da73f69c79fa7ee9daf0d71b0acdba6d7f',
       method: 'GET'
     })
       .then(res => {
-        const selectedCountry = res.data.filter(country => {
-          country.area == this.props.match.params.id;
+        const selectedPhoto = res.data.filter(photo => {
+          return photo.id === this.props.match.params.id;
         });
-        console.log(selectedCountry);
-        this.setState({ country: selectedCountry });
+        this.setState({ photo: selectedPhoto });
       });
   }
 
   render() {
-    // console.log(this.state);
+    console.log(this.state.photo);
     return (
       <main>
-        <h1 className="title is-3">{this.state.country.name}</h1>
+        {this.state.photo && <img src={this.state.photo.urls.regular} />}
       </main>
     );
   }

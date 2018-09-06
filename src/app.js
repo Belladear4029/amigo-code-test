@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Route, BrowserRouter } from 'react-router-dom';
+import { Route, BrowserRouter, Link } from 'react-router-dom';
 
 import Home from './components/Home';
 import Show from './components/Show';
@@ -18,6 +18,11 @@ class App extends React.Component {
     return (
       <BrowserRouter>
         <main>
+          <nav className="navbar is-fixed-top">
+            <Link className="navbar-item" to="/">
+              <h1>Photographs.</h1>
+            </Link>
+          </nav>
           <section className="section">
             <div className="container">
               <Route exact path="/" component={Home}/>
