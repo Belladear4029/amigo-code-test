@@ -9,22 +9,17 @@ class Show extends React.Component {
 
   componentWillMount() {
     axios({
-      url: 'https://api.unsplash.com/photos/random?count=20',
+      url: `https://api.unsplash.com/photos/${this.props.match.params.id}`,
       method: 'GET',
       headers: {
         Authorization: 'Client-ID 3303fbd52fa053ed62beecf82a93c6da73f69c79fa7ee9daf0d71b0acdba6d7f'
       }
     })
-      .then(res => {
-        const selectedPhoto = res.data.filter(photo => {
-          return photo.id === this.props.match.params.id;
-        });
-        this.setState({ photo: selectedPhoto });
-      });
+      .then(res => this.setState({ photo: res.data }));
   }
 
   render() {
-    console.log(this.state.photo);
+    console.log('render', this.state.photo);
     return (
       <main>
         {this.state.photo && <img src={this.state.photo.urls.regular} />}
