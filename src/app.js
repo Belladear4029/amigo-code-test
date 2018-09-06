@@ -18,7 +18,7 @@ class App extends React.Component {
     return (
       <BrowserRouter>
         <main>
-          <nav className="navbar is-fixed-top">
+          <nav className="navbar">
             <Link className="navbar-item" to="/">
               <h1>Photographs.</h1>
             </Link>

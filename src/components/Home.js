@@ -10,8 +10,11 @@ class Home extends React.Component {
 
   componentWillMount() {
     axios({
-      url: 'https://api.unsplash.com/photos/?client_id=3303fbd52fa053ed62beecf82a93c6da73f69c79fa7ee9daf0d71b0acdba6d7f',
-      method: 'GET'
+      url: 'https://api.unsplash.com/photos/?count=20',
+      method: 'GET',
+      headers: {
+        Authorization: 'Client-ID 3303fbd52fa053ed62beecf82a93c6da73f69c79fa7ee9daf0d71b0acdba6d7f'
+      }
     })
       .then(res => this.setState({ photos: res.data }));
   }
@@ -20,7 +23,6 @@ class Home extends React.Component {
     console.log(this.state);
     return (
       <main>
-        <h1 className="title is-2">Photos</h1>
         <div className="columns is-multiline">
           {this.state.photos && this.state.photos.map(photo =>
             <div key={photo.id} className="column is-one-quarter">

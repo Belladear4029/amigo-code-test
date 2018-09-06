@@ -9,8 +9,11 @@ class Show extends React.Component {
 
   componentWillMount() {
     axios({
-      url: 'https://api.unsplash.com/photos/random?count=20?client_id=3303fbd52fa053ed62beecf82a93c6da73f69c79fa7ee9daf0d71b0acdba6d7f',
-      method: 'GET'
+      url: 'https://api.unsplash.com/photos/random?count=20',
+      method: 'GET',
+      headers: {
+        Authorization: 'Client-ID 3303fbd52fa053ed62beecf82a93c6da73f69c79fa7ee9daf0d71b0acdba6d7f'
+      }
     })
       .then(res => {
         const selectedPhoto = res.data.filter(photo => {
