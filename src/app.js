@@ -19,9 +19,12 @@ class App extends React.Component {
       <BrowserRouter>
         <main>
           <nav className="navbar">
-            <Link className="navbar-item" to="/">
-              <h1>Photographs.</h1>
-            </Link>
+            <div className="navbar-brand">
+              <Link className="navbar-item" to="/">Home</Link>
+            </div>
+            <div className="navbar-brand navbar-end">
+              <Link className="navbar-item" to="/favourites">My Favourites</Link>
+            </div>
           </nav>
           <section className="section">
             <div className="container">
