@@ -25,9 +25,9 @@ class Home extends React.Component {
       <main>
         <div className="columns is-multiline">
           {this.state.photos && this.state.photos.map(photo =>
-            <div key={photo.id} className="column is-one-quarter">
+            <div key={photo.id} className="column is-one-third">
               <Link  to={`/show/${photo.id}`}>
-                <img src={photo.urls.regular} />
+                <img src={photo.urls.regular} className="home-image" />
               </Link>
             </div>
           )}

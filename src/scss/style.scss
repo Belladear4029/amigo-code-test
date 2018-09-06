@@ -21,6 +21,19 @@ nav.navbar {
   }
 }
 
+//HOME PAGE
+.home-image {
+  transition: 0.3s ease;
+  &:hover {
+    transform: scale(1.005);
+  }
+}
+
+//SHOW PAGE
+.photographer {
+  text-transform: capitalize;
+  font-weight: 600;
+}
 .fa-star {
   font-size: 20px;
 }
