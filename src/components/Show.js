@@ -1,13 +1,9 @@
 import React from 'react';
 import axios from 'axios';
-import Flash from '../lib/Flash';
-import FlashMessages from './FlashMessages';
 
 class Show extends React.Component {
 
-  state = {
-    favourites: []
-  };
+  state = {};
 
   componentWillMount = () => {
     axios({
@@ -21,28 +17,17 @@ class Show extends React.Component {
   }
 
   handleFavourite = () => {
-    console.log('favourites', this.state.favourites);
     document.getElementById('star').classList.toggle('fas');
-    if(this.state.favourites.includes(this.state.photo)) {
-      this.state.favourites.splice(this.state.favourites.indexOf(this.state.photo), 1);
-    } else this.state.favourites.push(this.state.photo);
-    const obj = localStorage.getItem('favourites').split();
-    const photoArray = Object.values(obj).map(value => {
-      return [value];
-    });
-    console.log(typeof(photoArray));
-    // const storedArray = JSON.parse(localStorage.getItem('favourites'));
-    // console.log(typeof(storedArray));
-    // const newPhotoArray = storedArray.push(this.state.photo.urls.regular);
-    // localStorage.setItem('favourites', JSON.stringify(newPhotoArray));
-    // Flash.setMessage('success', 'Added to Favourites');
+    if(localStorage.getItem('favourites')) {
+      const storedArray = JSON.parse(localStorage.getItem('favourites').split());
+      const newPhotoArray = storedArray.concat(this.state.photo.urls.regular.split());
+      localStorage.setItem('favourites', JSON.stringify(newPhotoArray));
+    } else localStorage.setItem('favourites', JSON.stringify(this.state.photo.urls.regular.split()));
   }
 
   render() {
-    // console.log('localStorage', localStorage);
     return (
       <main>
-        <FlashMessages />
         <div className="columns">
           <div className="column is-half-desktop is-full-mobile">
             {this.state.photo && <img src={this.state.photo.urls.regular} />}
