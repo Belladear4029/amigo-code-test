@@ -8,7 +8,11 @@ class Home extends React.Component {
     photos: []
   };
 
-  componentWillMount() {
+  componentWillMount = () => {
+    this.getPictures();
+  }
+
+  getPictures = () => {
     axios({
       url: 'https://api.unsplash.com/photos/',
       method: 'GET',
@@ -19,7 +23,7 @@ class Home extends React.Component {
       .then(res => this.setState({ photos: res.data }));
   }
 
-  reloadPage() {
+  reloadPage = () => {
     location.reload();
   }
 
@@ -27,7 +31,7 @@ class Home extends React.Component {
     console.log(this.state);
     return (
       <main>
-        <button className="button" onClick={this.reloadPage}>MIX</button>
+        <button className="button" onClick={this.getPictures}>MIX</button>
         <div className="columns is-multiline">
           {this.state.photos && this.state.photos.map(photo =>
             <div key={photo.id} className="column is-one-third">

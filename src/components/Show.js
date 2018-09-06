@@ -1,6 +1,5 @@
 import React from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
 import Flash from '../lib/Flash';
 import FlashMessages from './FlashMessages';
 
@@ -21,27 +20,32 @@ class Show extends React.Component {
       .then(res => this.setState({ photo: res.data }));
   }
 
-  flashMessage = () => {
-
-  }
-
   handleFavourite = () => {
     console.log('favourites', this.state.favourites);
     document.getElementById('star').classList.toggle('fas');
     if(this.state.favourites.includes(this.state.photo)) {
       this.state.favourites.splice(this.state.favourites.indexOf(this.state.photo), 1);
     } else this.state.favourites.push(this.state.photo);
-    Flash.setMessage('success', 'Added to Favourites');
+    const obj = localStorage.getItem('favourites').split();
+    const photoArray = Object.values(obj).map(value => {
+      return [value];
+    });
+    console.log(typeof(photoArray));
+    // const storedArray = JSON.parse(localStorage.getItem('favourites'));
+    // console.log(typeof(storedArray));
+    // const newPhotoArray = storedArray.push(this.state.photo.urls.regular);
+    // localStorage.setItem('favourites', JSON.stringify(newPhotoArray));
+    // Flash.setMessage('success', 'Added to Favourites');
   }
 
   render() {
-    console.log('render', this.state);
+    // console.log('localStorage', localStorage);
     return (
       <main>
         <FlashMessages />
         <div className="columns">
           <div className="column is-half-desktop is-full-mobile">
-            {this.state.photo && <img src={this.state.photo.urls.regular} className="show-image" />}
+            {this.state.photo && <img src={this.state.photo.urls.regular} />}
           </div>
           <div className="column is-half-desktop is-full-mobile">
             {this.state.photo && this.state.photo.location && <h2 className="title is-5">{this.state.photo.location.title}</h2>}
