@@ -1,5 +1,8 @@
 import React from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
+import Flash from '../lib/Flash';
+import FlashMessages from './FlashMessages';
 
 class Show extends React.Component {
 
@@ -18,25 +21,31 @@ class Show extends React.Component {
       .then(res => this.setState({ photo: res.data }));
   }
 
+  flashMessage = () => {
+
+  }
+
   handleFavourite = () => {
     console.log('favourites', this.state.favourites);
     document.getElementById('star').classList.toggle('fas');
     if(this.state.favourites.includes(this.state.photo)) {
       this.state.favourites.splice(this.state.favourites.indexOf(this.state.photo), 1);
     } else this.state.favourites.push(this.state.photo);
+    Flash.setMessage('success', 'Added to Favourites');
   }
 
   render() {
     console.log('render', this.state);
     return (
       <main>
+        <FlashMessages />
         <div className="columns">
           <div className="column is-half-desktop is-full-mobile">
             {this.state.photo && <img src={this.state.photo.urls.regular} className="show-image" />}
           </div>
           <div className="column is-half-desktop is-full-mobile">
             {this.state.photo && this.state.photo.location && <h2 className="title is-5">{this.state.photo.location.title}</h2>}
-            {this.state.photo && <h2>Captured by <span className="photographer"> {this.state.photo.user.name}</span></h2>}
+            {this.state.photo && <h2>Captured by <a href={this.state.photo.user.portfolio_url} className="photographer"> {this.state.photo.user.name}</a></h2>}
             <hr />
             {this.state.photo && <h2 className="title is-5">{this.state.photo.views ? `${this.state.photo.views} Views` : '0 Views'}</h2>}
             {this.state.photo && <h2 className="title is-5">{this.state.photo.likes ? `${this.state.photo.likes} Likes` : '0 Likes'}</h2>}

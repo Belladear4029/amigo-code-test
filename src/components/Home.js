@@ -19,10 +19,15 @@ class Home extends React.Component {
       .then(res => this.setState({ photos: res.data }));
   }
 
+  reloadPage() {
+    location.reload();
+  }
+
   render() {
     console.log(this.state);
     return (
       <main>
+        <button className="button" onClick={this.reloadPage}>MIX</button>
         <div className="columns is-multiline">
           {this.state.photos && this.state.photos.map(photo =>
             <div key={photo.id} className="column is-one-third">
