@@ -18,7 +18,6 @@ class Favourites extends React.Component {
   }
 
   render() {
-    console.log(this.state);
     return (
       <main>
         {!this.state.photos && <h1 className="title is-4 is-centered">No favourites yet!</h1>}

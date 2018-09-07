@@ -44,8 +44,6 @@ class Show extends React.Component {
   toArray = (object) => [object];
 
   render() {
-    console.log(this.state);
-    // localStorage.clear();
     return (
       <main>
         <div className="columns">
@@ -54,7 +52,7 @@ class Show extends React.Component {
           </div>
           <div className="column is-half-desktop is-full-mobile">
             {this.state.photo && this.state.photo.location && <h2 className="title is-5">{this.state.photo.location.title}</h2>}
-            {this.state.photo && <h2>Captured by <a href={this.state.photo.user.portfolio_url} className="photographer"> {this.state.photo.user.name}</a></h2>}
+            {this.state.photo && <h2>Captured by <a target="_blank" href={this.state.photo.user.portfolio_url} className="photographer"> {this.state.photo.user.name}</a></h2>}
             <hr />
             {this.state.photo && <h2 className="title is-5">{this.state.photo.views ? `${this.state.photo.views} Views` : '0 Views'}</h2>}
             {this.state.photo && <h2 className="title is-5">{this.state.photo.likes ? `${this.state.photo.likes} Likes` : '0 Likes'}</h2>}

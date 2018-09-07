@@ -14,7 +14,7 @@ class Home extends React.Component {
 
   getPictures = () => {
     axios({
-      url: 'https://api.unsplash.com/photos/',
+      url: 'https://api.unsplash.com/photos/random?count=30',
       method: 'GET',
       headers: {
         Authorization: 'Client-ID 3303fbd52fa053ed62beecf82a93c6da73f69c79fa7ee9daf0d71b0acdba6d7f'
