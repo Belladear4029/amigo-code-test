@@ -7,7 +7,7 @@ class Show extends React.Component {
     favourite: false
   };
 
-  componentWillMount = () => {
+  componentDidMount = () => {
     axios({
       url: `https://api.unsplash.com/photos/${this.props.match.params.id}`,
       method: 'GET',
@@ -17,9 +17,16 @@ class Show extends React.Component {
     })
       .then(res => this.setState({ photo: res.data }))
       .then(() => {
-        const favourites = JSON.parse(localStorage.getItem('favourites').split());
-        if(favourites.includes(this.state.photo.urls.regular)) this.setState({ favourite: true });
+        if(localStorage.getItem('favourites')) {
+          this.setState({ favourite: this.checkIfFavourite() });
+        }
       });
+  }
+
+  checkIfFavourite = () => {
+    const favourites = JSON.parse(localStorage.getItem('favourites'));
+    const photoIds = favourites.map(photo => photo.id);
+    return photoIds.includes(this.state.photo.id);
   }
 
   handleFavourite = () => {
@@ -27,14 +34,18 @@ class Show extends React.Component {
       this.setState({ favourite: true });
       document.getElementById('star').classList.toggle('fas');
       if(localStorage.getItem('favourites')) {
-        const storedArray = JSON.parse(localStorage.getItem('favourites').split());
-        const newPhotoArray = storedArray.concat(this.state.photo.urls.regular.split());
+        const storedArray = JSON.parse(localStorage.getItem('favourites'));
+        const newPhotoArray = storedArray.concat(this.toArray(this.state.photo));
         localStorage.setItem('favourites', JSON.stringify(newPhotoArray));
-      } else localStorage.setItem('favourites', JSON.stringify(this.state.photo.urls.regular.split()));
+      } else localStorage.setItem('favourites', JSON.stringify(this.toArray(this.state.photo)));
     }
   }
 
+  toArray = (object) => [object];
+
   render() {
+    console.log(this.state);
+    // localStorage.clear();
     return (
       <main>
         <div className="columns">

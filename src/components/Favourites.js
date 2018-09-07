@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 class Favourites extends React.Component {
 
@@ -15,11 +16,14 @@ class Favourites extends React.Component {
     console.log(this.state);
     return (
       <main>
+        {!this.state.photos && <h1 className="title is-4 is-centered">No favourites yet!</h1>}
         <div className="columns is-multiline">
-          {!this.state.photos && <h1 className="title is-4 is-centered">No favourites yet!</h1>}
           {this.state.photos && this.state.photos.map(photo =>
-            <div key={photo} className="column is-one-third img-wrap">
-              <img src={photo} className="home-img" />
+            <div key={photo.id} className="column is-one-third img-wrap">
+              <Link  to={`/show/${photo.id}`}>
+                <img src={photo.urls.regular} className="home-img" />
+                {photo.location && <p className="img-description">{photo.location.name}</p>}
+              </Link>
             </div>
           )}
         </div>
