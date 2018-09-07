@@ -44,11 +44,11 @@ nav.navbar {
 
 .img-wrap {
   position: relative;
-  &:hover .img-description {
-    visibility: visible;
-  }
   &:hover .home-img {
     opacity: 0.5;
+  }
+  &:hover .img-description {
+    visibility: visible;
   }
   .home-img {
     transition: 0.3s ease;
@@ -76,22 +76,8 @@ nav.navbar {
 
 .fa-star {
   font-size: 20px;
-}
-
-.notification {
-  height: 0;
-  opacity: 0;
-  transition: all 1s;
-  padding: 0;
-  margin: 0;
-  border-radius: 0;
-  position: absolute;
-  z-index: 1;
-  &.is-active {
-    background-color: #374c6d;
-    height: 60px;
-    border-radius: 10px;
-    opacity: 1;
-    padding: 1.25rem 2.5rem 1.25rem 1.5rem;
+  &:active {
+    transition: 0.5s ease;
+    transform: scale(4);
   }
 }

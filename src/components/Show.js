@@ -47,7 +47,7 @@ class Show extends React.Component {
             <hr />
             {this.state.photo && <h2 className="title is-5">{this.state.photo.views ? `${this.state.photo.views} Views` : '0 Views'}</h2>}
             {this.state.photo && <h2 className="title is-5">{this.state.photo.likes ? `${this.state.photo.likes} Likes` : '0 Likes'}</h2>}
-            <h2><i id="star" onClick={this.handleFavourite} className={`${!this.state.favourite ? 'far' : 'fas'} fa-star`}></i> Add to Favourites</h2>
+            <h2><i id="star" onClick={this.handleFavourite} className={`${!this.state.favourite ? 'far' : 'fas'} fa-star`}></i>{`${!this.state.favourite ? ' Add to Favourites' : ' Added to Favourites!'}`}</h2>
           </div>
         </div>
       </main>
