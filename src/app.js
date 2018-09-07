@@ -20,11 +20,9 @@ class App extends React.Component {
       <BrowserRouter>
         <main>
           <nav className="navbar">
-            <div className="navbar-brand">
-              <Link className="navbar-item" to="/">Home</Link>
-            </div>
-            <div className="navbar-brand navbar-end">
-              <Link className="navbar-item" to="/favourites">My Favourites</Link>
+            <div className="navbar-brand is-centered">
+              <Link className="navbar-item" id="home" to="/">Home</Link>
+              <Link className="navbar-item" id="favourites" to="/favourites">My Favourites</Link>
             </div>
           </nav>
           <section className="section">
